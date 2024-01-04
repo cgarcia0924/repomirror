@@ -1,0 +1,11 @@
+type ConsultaGrabaciones @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  cola: String
+  fecha: String
+  usuario: String
+  dnis: String
+  url: String
+  startDate: String
+  endDate: String
+  ani: String
+}

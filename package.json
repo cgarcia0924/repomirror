@@ -32,9 +32,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "build:dev": "ls build",
+    "build:test": "ls build",
+    "build:prod": "ls build",
+    "coverage": "jest --coverage",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:dev": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

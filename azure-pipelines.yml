@@ -22,6 +22,7 @@ variables:
   - group: lda-test-contactcenter
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
   - group: lda-prod-contactcenter
-
+- name: IMAGE_JAVASCRIPT_NODEJS_YARN_BUILD 
+  value: bancopichinchaec.azurecr.io/common-pipeline-template/yarn:1.22.17_node-18.17.0-alpine 
 extends:
   template: javascript/nodejs/yarn/init.yml@dvp-tpl-amplify-records

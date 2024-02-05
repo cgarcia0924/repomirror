@@ -1,0 +1,27 @@
+name: $(SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+- feature/*
+- release/*
+- hotfix/*
+- develop
+- master
+
+resources:
+  repositories:
+    - repository: self
+    - repository: dvp-tpl-amplify-records
+      type: git
+      name: BP-DevOps-Infrastructure/dvp-tpl-amplify-records
+      ref: refs/heads/feature/code
+
+variables:
+- ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/feature/') }}:
+  - group: lda-dev-contactcenter
+- ${{ if or( eq(variables['Build.SourceBranch'], 'refs/heads/develop'),startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix/'), startsWith(variables['Build.SourceBranch'], 'refs/heads/release/')) }}:
+  - group: lda-test-contactcenter
+- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/master') }}:
+  - group: lda-prod-contactcenter
+
+extends:
+  template: javascript/nodejs/yarn/init.yml@dvp-tpl-amplify-records
